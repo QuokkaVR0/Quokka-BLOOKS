@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quokka Blooks</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: black;
+      color: white;
+      font-family: 'Orbitron', sans-serif;
+      text-align: center;
+      overflow-x: hidden;
+      position: relative;
+      padding-bottom: 250px;
+    }
+
+    h1 {
+      font-size: 64px;
+      margin-top: 50px;
+      text-shadow: 0 0 15px #00ffff;
+    }
+
+    .button {
+      font-family: 'Orbitron', sans-serif;
+      display: inline-block;
+      margin: 10px;
+      padding: 16px 32px;
+      font-size: 20px;
+      background: #00bfff;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s;
+    }
+
+    .button:hover {
+      background: #0099cc;
+      transform: scale(1.05);
+    }
+
+    #aboutBox {
+      margin-top: 30px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      display: none;
+      font-size: 18px;
+    }
+
+    #stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: transparent;
+      overflow: hidden;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: twinkle 2s infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    #astronautWrapper {
+      margin-top: 80px;
+    }
+
+    .rounded-image {
+      width: 250px;
+      height: auto;
+      margin-top: 30px;
+      border-radius: 25px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+    }
+
+    .free-label {
+      font-size: 48px;
+      margin-top: 20px;
+      color: #00ffcc;
+      text-shadow: 0 0 10px #00ffcc;
+    }
+
+    #popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 90%;
+      max-width: 600px;
+      transform: translate(-50%, -50%);
+      background: #111;
+      color: #00ffff;
+      border: 2px solid #00bfff;
+      border-radius: 20px;
+      padding: 30px;
+      z-index: 999;
+      box-shadow: 0 0 30px rgba(0,255,255,0.5);
+    }
+
+    #popup h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    #popup ol {
+      text-align: left;
+      margin: 0 auto;
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    #popup button {
+      margin-top: 20px;
+      padding: 10px 25px;
+      font-size: 16px;
+      background: #00bfff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-family: 'Orbitron', sans-serif;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #popup button:hover {
+      background: #0099cc;
+    }
+  </style>
+</head>
+<body>
+  <div id="stars"></div>
+
+  <h1>Quokka Blooks</h1>
+
+  <button class="button" onclick="toggleAbout()">About</button>
+  <button class="button" onclick="showKey()">Key/Password</button>
+  <a href="https://discord.gg/wqScvQGx" target="_blank"><button class="button">Discord</button></a>
+  <button class="button" onclick="showPopup()">Download</button>
+
+  <div id="aboutBox">
+    <h2>What is Blooket?</h2>
+    <p>Blooket is an educational game platform where students answer questions to earn and unlock collectible characters called “blooks.”</p>
+    <p><strong>Quokka Blooks</strong> offers fun and safe mods such as fake token generators, auto-answer, visual unlocks, and more to enhance your Blooket experience.</p>
+  </div>
+
+  <div id="popup">
+    <h2>How to Use</h2>
+    <ol>
+      <li>Step 1: Download the text file containing the mod code.</li>
+      <li>Step 2: Copy all of the code inside it.</li>
+      <li>Step 3: Go to <strong>blooket.com/my-blooks</strong> (make sure you're signed in).</li>
+      <li>Step 4: Press <strong>F12</strong> or right-click and choose "Inspect".</li>
+      <li>Step 5: Go to the <strong>Console</strong> tab and paste the code. Press <strong>Enter</strong>.</li>
+      <li>Step 6: When prompted, enter your <strong>key/password</strong> (shown at top or in Discord).</li>
+      <li>Step 7: <strong>ENJOY!</strong> 🎉</li>
+    </ol>
+    <button onclick="downloadScript()">📥 Download Script File</button>
+    <button onclick="closePopup()">Close</button>
+  </div>
+
+  <div id="astronautWrapper">
+    <div class="free-label">FREE</div>
+    <img class="rounded-image" src="https://i.ytimg.com/vi/r_lSCSdL5-0/maxresdefault.jpg" alt="Promo Image">
+  </div>
+
+  <script>
+    function toggleAbout() {
+      const box = document.getElementById('aboutBox');
+      box.style.display = box.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function showPopup() {
+      document.getElementById('popup').style.display = 'block';
+    }
+
+    function closePopup() {
+      document.getElementById('popup').style.display = 'none';
+    }
+
+    function showKey() {
+      alert("Your Key/Password is: QUOKKA2025");
+    }
+
+    function downloadScript() {
+      const scriptContent = `(() => {
+  'use strict';
+
+  function loadKomikaFont() {
+    if (!document.getElementById('komika-axis-font')) {
+      const fontLink = document.createElement('link');
+      fontLink.id = 'komika-axis-font';
+      fontLink.rel = 'stylesheet';
+      fontLink.href = 'https://fonts.cdnfonts.com/css/komika-axis';
+      document.head.appendChild(fontLink);
+    }
+  }
+
+  // Full code goes here...
+
+})();`;
+
+      const blob = new Blob([scriptContent], { type: 'text/plain' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'quokka-blooks-mod.txt';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    const starsContainer = document.getElementById('stars');
+    for (let i = 0; i < 150; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.top = Math.random() * 100 + '%';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.animationDelay = Math.random() * 2 + 's';
+      star.style.width = star.style.height = Math.random() * 2 + 1 + 'px';
+      starsContainer.appendChild(star);
+    }
+  </script>
+</body>
+</html>
